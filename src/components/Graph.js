@@ -5,26 +5,32 @@ class Graph extends Component {
         const xAxisSize = 5;
         const yAxisSize = 5;
         const numCells = xAxisSize * yAxisSize * 4;
-        //const xCellWidth = 
         const cells = [];
         for (let i = 1; i <= numCells; i++) {
             cells.push({ num: i });
         }
         return cells.map(({ num }) => {
-            const styles = { width: `${(1 / (xAxisSize * 2)) * 100}%`, height: `${(1 / (yAxisSize * 2)) * 100}%` };
+            const inlineStyle = {
+                width: `${(1 / (xAxisSize * 2)) * 100}%`,
+                height: `${(1 / (yAxisSize * 2)) * 100}%`
+            };
+
+            let cssStyle = 'cell';
+
             if (num % xAxisSize === 0 && num % (xAxisSize * 2) !== 0) {
-                return <div key={num} className="cell rightBorder" style={styles}></div>;
+                cssStyle += ' rightBorder';
             }
             if (num % xAxisSize === 1 && num % (xAxisSize * 2) !== 1) {
-                return <div key={num} className="cell leftBorder" style={styles}></div>
+                cssStyle += ' leftBorder';
             }
-            // if (totalCells % 2 === num) {
-            //     return <div key={num} className="cell bottomBorder"></div>
-            // }
-            // if (totalCells % num === 1) {
-            //     return <div key={num} className="cell topBorder"></div>
-            // }
-            return <div key={num} className="cell" style={styles} />;
+            const halfCells = numCells / 2;
+            if (num <= halfCells && (num > halfCells - (xAxisSize * 2))) {
+                cssStyle += ' bottomBorder';
+            }
+            if (num > halfCells && (num <= halfCells + (xAxisSize * 2))) {
+                cssStyle += ' topBorder';
+            }
+            return <div key={num} className={cssStyle} style={inlineStyle}>{num}<span className="dot" /></div>;
         });
     }
 	render() {
