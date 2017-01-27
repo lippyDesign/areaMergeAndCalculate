@@ -1,0 +1,29 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+.graph {
+    display: flex;
+    border: 1px solid red;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 700px;
+    height: 700px
+}
+.cell {
+    border: 1px solid pink;
+    box-sizing: border-box;
+}
+.rightBorder {
+    border-right: 1px solid black;
+}
+.leftBorder {
+    border-left: 1px solid black;
+}
+.bottomBorder {
+    border-bottom: 1px solid red;
+}
+.topBorder {
+    border-top: 1px solid red;
+}
